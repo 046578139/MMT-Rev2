@@ -90,6 +90,26 @@ Address (79 S Grant St) and opening hours are confirmed and live on the site.
 Worth adding when someone can supply it: an email address, and more photos of recent
 classes — see [Adding photos](#adding-photos).
 
+### Adding photos
+
+Photos live in `public/assets/img/` as a `.jpg` + `.webp` pair per slot. To add or
+replace one, drop the full-size original into a `photos/` folder named after its slot
+and run the optimizer — it resizes, strips EXIF rotation, and writes both formats:
+
+```bash
+pip install pillow
+python3 tools/optimize-photos.py
+node build.js
+```
+
+Slots currently wired up: `hero-range`, `range-lesson`, `classroom`, `shop-interior`,
+`gun-wall`, `trooper`, `deployment`, `checklist`, `lawshield`. Add a new one by adding
+a line to `SLOTS` in the script and referencing it from `build.js` with
+`picture('<slot>', 'alt text', {...})`.
+
+`photos/` is git-ignored, so keep the masters somewhere safe too. Pillow is only needed
+for this tool — `node build.js` still has no dependencies.
+
 ## Deploying
 
 `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to

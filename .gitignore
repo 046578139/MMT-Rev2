@@ -4,3 +4,6 @@ node_modules/
 
 # Build output — regenerate with `node build.js`
 dist/
+
+# Photo originals — drop-folder for tools/optimize-photos.py
+photos/
