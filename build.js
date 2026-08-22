@@ -9,7 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { site, nav, courses, faqs, instructor } = require('./src/content');
+const { site, nav, courses, faqs, instructor, photos } = require('./src/content');
 const { page, esc, svg, courseIcon, fullAddress, hoursTable } = require('./src/layout');
 
 const DIST = path.join(__dirname, 'dist');
@@ -47,13 +47,46 @@ const track = (p, priority, changefreq = 'monthly') => {
 
 /* --------------------------------------------------------------- partials */
 
-/** Responsive <picture> for our webp + jpg pairs. */
-function picture(name, alt, { width, height, cls = '', loading = 'lazy', sizes, fetchpriority } = {}) {
+/** Read intrinsic dimensions from a JPEG's SOF marker — no dependency, and it
+ *  keeps width/height honest when a photo is swapped for one of another shape. */
+function jpegSize(file) {
+  const b = fs.readFileSync(file);
+  let i = 2; // skip SOI
+  while (i < b.length) {
+    if (b[i] !== 0xff) { i++; continue; }
+    const marker = b[i + 1];
+    // SOF0-SOF15, excluding DHT (c4), JPG (c8) and DAC (cc)
+    if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+      return { height: b.readUInt16BE(i + 5), width: b.readUInt16BE(i + 7) };
+    }
+    i += 2 + b.readUInt16BE(i + 2);
+  }
+  throw new Error('No SOF marker in ' + file);
+}
+
+const IMG_DIR = path.join(PUBLIC, 'assets', 'img');
+const hasPhoto = (name) => fs.existsSync(path.join(IMG_DIR, name + '.jpg'));
+
+/** First candidate that is actually on disk, or null. Lets a better photo take
+ *  over a slot the moment it is added, with no code change. */
+const pickPhoto = (...candidates) => candidates.find(hasPhoto) || null;
+
+/**
+ * Responsive <picture> for our webp + jpg pairs. Alt text and real dimensions
+ * are looked up rather than passed in. Returns '' for a slot with no file, so a
+ * not-yet-supplied photo degrades to nothing instead of a broken image.
+ */
+function picture(name, { cls = '', loading = 'lazy', sizes, fetchpriority, alt } = {}) {
+  if (!name || !hasPhoto(name)) return '';
+  const { width, height } = jpegSize(path.join(IMG_DIR, name + '.jpg'));
+  const text = alt || (photos[name] && photos[name].alt) || '';
+  if (!text) throw new Error(`No alt text for photo "${name}" — add it to photos in src/content.js`);
+
   const attrs = [
     `src="/assets/img/${name}.jpg"`,
-    `alt="${esc(alt)}"`,
-    width ? `width="${width}"` : '',
-    height ? `height="${height}"` : '',
+    `alt="${esc(text)}"`,
+    `width="${width}"`,
+    `height="${height}"`,
     `loading="${loading}"`,
     loading === 'eager' ? 'decoding="sync"' : 'decoding="async"',
     fetchpriority ? `fetchpriority="${fetchpriority}"` : '',
@@ -150,9 +183,7 @@ function buildHome() {
 
   const body = `
 <section class="hero">
-  ${picture('hero-range', 'A shooter practicing on the range under instruction', {
-    width: 1800,
-    height: 1201,
+  ${picture(pickPhoto('range-lesson', 'hero-range'), {
     cls: 'hero-bg',
     loading: 'eager',
     fetchpriority: 'high',
@@ -198,7 +229,7 @@ function buildHome() {
 <section class="wrap section">
   <div class="split">
     <div class="split-media">
-      ${picture('classroom', `${instructor.name} teaching a classroom session`, { width: 828, height: 621 })}
+      ${picture('classroom')}
     </div>
     <div class="split-body">
       <p class="eyebrow">Your instructor</p>
@@ -216,11 +247,7 @@ function buildHome() {
   <div class="wrap">
     <div class="split split-reverse">
       <div class="split-media">
-        ${picture('checklist', 'Concealed carry checklist: five steps to a Maryland Wear and Carry permit', {
-          width: 900,
-          height: 1120,
-          cls: 'framed',
-        })}
+        ${picture('checklist', { cls: 'framed' })}
       </div>
       <div class="split-body">
         <p class="eyebrow">Wear &amp; Carry</p>
@@ -371,7 +398,7 @@ function buildCourse(c) {
   <div class="prose">
     ${sections}
     ${notes}
-    ${c.checklist ? `<figure class="figure">${picture('checklist', 'Concealed carry checklist: five steps to a Maryland Wear and Carry permit', { width: 900, height: 1120, cls: 'framed' })}<figcaption>The five steps from signing up to submitting your application.</figcaption></figure>` : ''}
+    ${c.checklist ? `<figure class="figure">${picture('checklist', { cls: 'framed' })}<figcaption>The five steps from signing up to submitting your application.</figcaption></figure>` : ''}
   </div>
 </div>
 
@@ -455,8 +482,8 @@ function buildInstructor() {
 <div class="wrap section">
   <div class="split">
     <div class="split-media stack-media">
-      ${picture('trooper', `${instructor.name} in Maryland State Police uniform`, { width: 539, height: 960, cls: 'framed' })}
-      ${picture('deployment', `${instructor.name} deployed in Afghanistan`, { width: 886, height: 960, cls: 'framed' })}
+      ${picture('trooper', { cls: 'framed' })}
+      ${picture('deployment', { cls: 'framed' })}
     </div>
     <div class="split-body prose">
       <h2>${esc(instructor.name)}</h2>
@@ -576,6 +603,23 @@ function buildContact() {
 
   // With no configured endpoint the form would silently swallow submissions, so
   // render a phone-first panel instead of a broken form.
+  const shopPhotos = ['shop-interior', 'gun-wall'].filter(hasPhoto);
+  const shopSection = shopPhotos.length
+    ? `
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Visit the shop</h2>
+      <p>Classes run out of our shop on Grant Street in Frostburg. Stop in during opening
+        hours to ask about a class, handle a loaner, or pick up what you need for the range.</p>
+    </div>
+    <div class="grid grid-${shopPhotos.length}">
+      ${shopPhotos.map((n) => `<figure class="shop-shot">${picture(n, { cls: 'framed' })}</figure>`).join('\n      ')}
+    </div>
+  </div>
+</section>`
+    : '';
+
   const form = site.formEndpoint
     ? `<form class="form" action="${site.formEndpoint}" method="POST">
   <div class="field">
@@ -648,12 +692,13 @@ function buildContact() {
       <p>${site.areaServed.map(esc).join(' &middot; ')}</p>
 
       <div class="partner">
-        ${picture('lawshield', 'U.S. LawShield — Legal Defense for Self Defense', { width: 520, height: 498 })}
+        ${picture('lawshield')}
         <p>Ask about U.S. LawShield legal defense membership at your next class.</p>
       </div>
     </aside>
   </div>
 </div>
+${shopSection}
 `;
 
   writePage(
@@ -794,6 +839,14 @@ function main() {
   build404();
   buildRedirects();
   buildSitemap();
+
+  const pending = Object.keys(photos).filter((n) => !hasPhoto(n));
+  if (pending.length) {
+    console.log(
+      `\nPhoto slots with no file yet (skipped, nothing broken): ${pending.join(', ')}` +
+      `\nDrop originals into photos/ and run: python3 tools/optimize-photos.py\n`
+    );
+  }
 
   console.log(`Built ${urls.length} pages + ${Object.keys(REDIRECTS).length} redirects -> dist/`);
   urls.forEach((u) => console.log('  ' + u.loc));

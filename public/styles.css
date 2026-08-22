@@ -131,6 +131,7 @@ address { font-style: normal; }
 
 .grid { display: grid; gap: 1.25rem; }
 .grid > * { min-width: 0; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .grid-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 
@@ -509,6 +510,11 @@ address { font-style: normal; }
 }
 .partner img { width: 100%; }
 .partner p { font-size: .92rem; color: var(--muted); }
+
+/* Shop photos on the contact page: uniform crop so mixed phone aspect ratios
+   still line up as a row. */
+.shop-shot { margin: 0; }
+.shop-shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 
 /* ----------------------------------------------------------------- hours */
 

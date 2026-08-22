@@ -483,6 +483,42 @@ const faqs = [
   },
 ];
 
+/**
+ * Photo slots. `alt` lives here so it stays with the asset rather than being
+ * repeated at each call site, and so a replaced photo cannot keep stale alt text.
+ * A slot listed here but not present in public/assets/img is simply skipped at
+ * build time — drop the file in and it appears.
+ */
+const photos = {
+  'range-lesson': {
+    alt: 'An instructor coaching a student through live-fire practice on the range',
+  },
+  'hero-range': {
+    alt: 'A shooter practicing on the range under instruction',
+  },
+  classroom: {
+    alt: 'A full classroom of students during a Mountain Maryland Firearms Training session',
+  },
+  'shop-interior': {
+    alt: 'Inside the shop: rifle racks, the Maryland State Police flag, and the Mountain Maryland Firearms Training sign',
+  },
+  'gun-wall': {
+    alt: 'A row of shotguns and rifles racked along the shop wall',
+  },
+  trooper: {
+    alt: 'John Sagal in Maryland State Police uniform',
+  },
+  deployment: {
+    alt: 'John Sagal deployed in Afghanistan',
+  },
+  checklist: {
+    alt: 'Concealed carry checklist: five steps to a Maryland Wear and Carry permit',
+  },
+  lawshield: {
+    alt: 'U.S. LawShield — Legal Defense for Self Defense',
+  },
+};
+
 /** Instructor bio, lightly copy-edited from the old "Meet our Trainers" page. */
 const instructor = {
   name: 'John Sagal',
@@ -516,4 +552,4 @@ const instructor = {
   ],
 };
 
-module.exports = { site, nav, courses, faqs, instructor };
+module.exports = { site, nav, courses, faqs, instructor, photos };

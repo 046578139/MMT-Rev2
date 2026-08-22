@@ -102,10 +102,21 @@ python3 tools/optimize-photos.py
 node build.js
 ```
 
-Slots currently wired up: `hero-range`, `range-lesson`, `classroom`, `shop-interior`,
-`gun-wall`, `trooper`, `deployment`, `checklist`, `lawshield`. Add a new one by adding
-a line to `SLOTS` in the script and referencing it from `build.js` with
-`picture('<slot>', 'alt text', {...})`.
+Alt text lives with the slot in the `photos` map in `src/content.js`, and dimensions are
+read from the file itself at build time — so swapping in a photo of a different shape
+cannot leave stale alt text or a distorted layout behind.
+
+A slot with no file is skipped rather than rendering a broken image, and `node build.js`
+lists what is still missing. Two placements are wired to light up on their own:
+
+- `range-lesson` becomes the home page hero as soon as it exists, otherwise
+  `hero-range` is used.
+- `shop-interior` and `gun-wall` add a "Visit the shop" section to the contact page;
+  with neither present the section does not render at all.
+
+Slots: `hero-range`, `range-lesson`, `classroom`, `shop-interior`, `gun-wall`,
+`trooper`, `deployment`, `checklist`, `lawshield`. Add a new one with a line in `SLOTS`
+in the script, an entry in `photos`, and a `picture('<slot>')` call in `build.js`.
 
 `photos/` is git-ignored, so keep the masters somewhere safe too. Pillow is only needed
 for this tool — `node build.js` still has no dependencies.
