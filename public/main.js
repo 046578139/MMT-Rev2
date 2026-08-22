@@ -38,3 +38,29 @@
     if (e.matches) setOpen(false);
   });
 })();
+
+/* Highlight today in the hours tables. Resolved in the shop's timezone rather
+   than the visitor's, so a traveller still sees the right row marked. */
+(function () {
+  'use strict';
+
+  var tables = document.querySelectorAll('.hours[data-tz]');
+  if (!tables.length) return;
+
+  for (var t = 0; t < tables.length; t++) {
+    var today;
+    try {
+      today = new Intl.DateTimeFormat('en-US', {
+        weekday: 'long',
+        timeZone: tables[t].getAttribute('data-tz')
+      }).format(new Date());
+    } catch (e) {
+      continue; // No Intl or unknown zone: leave it unmarked rather than wrong.
+    }
+
+    var rows = tables[t].querySelectorAll('.hours-row[data-day]');
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].getAttribute('data-day') === today) rows[i].classList.add('is-today');
+    }
+  }
+})();

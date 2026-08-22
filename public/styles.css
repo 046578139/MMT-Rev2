@@ -510,6 +510,41 @@ address { font-style: normal; }
 .partner img { width: 100%; }
 .partner p { font-size: .92rem; color: var(--muted); }
 
+/* ----------------------------------------------------------------- hours */
+
+.hours { margin: 0 0 1rem; display: grid; gap: .1rem; }
+.hours-row {
+  display: grid; grid-template-columns: 1fr auto; gap: 1rem;
+  padding: .42rem .5rem; border-radius: 6px;
+}
+.hours dt { color: var(--body); }
+.hours dd { margin: 0; font-variant-numeric: tabular-nums; color: var(--heading); font-weight: 600; }
+.hours .closed { color: var(--muted); font-weight: 400; }
+
+/* Today, resolved in the shop's own timezone by main.js. */
+.hours-row.is-today { background: #e6eef2; }
+.hours-row.is-today dt { color: var(--steel-600); font-weight: 700; }
+.hours-row.is-today dt::after {
+  content: 'Today';
+  margin-left: .5rem; padding: .05rem .4rem;
+  background: var(--steel); color: #fff;
+  font-family: var(--font-head); font-size: .68rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  border-radius: 999px; vertical-align: .08em;
+}
+
+.hours-note { font-size: .92rem; color: var(--muted); }
+
+/* Footer variant: dark background, tighter. */
+.footer-hours-head { margin-top: 1.5rem; }
+.site-footer .hours { gap: 0; font-size: .92rem; }
+.site-footer .hours-row { padding: .26rem .4rem; }
+.site-footer .hours dt { color: #b8c7d1; }
+.site-footer .hours dd { color: #fff; font-weight: 600; }
+.site-footer .hours .closed { color: #8fa2b0; font-weight: 400; }
+.site-footer .hours-row.is-today { background: rgba(110, 163, 186, .16); }
+.site-footer .hours-row.is-today dt { color: #fff; }
+
 /* ------------------------------------------------------------------ band */
 
 .band { background: var(--steel); color: #fff; }

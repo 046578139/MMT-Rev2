@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 
 const { site, nav, courses, faqs, instructor } = require('./src/content');
-const { page, esc, svg, courseIcon, fullAddress } = require('./src/layout');
+const { page, esc, svg, courseIcon, fullAddress, hoursTable } = require('./src/layout');
 
 const DIST = path.join(__dirname, 'dist');
 const PUBLIC = path.join(__dirname, 'public');
@@ -118,6 +118,14 @@ const localBusiness = {
     postalCode: site.address.postalCode,
     addressCountry: site.address.country,
   },
+  openingHoursSpecification: site.hours
+    .filter((h) => !h.closed)
+    .map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: `https://schema.org/${h.day}`,
+      opens: h.opens,
+      closes: h.closes,
+    })),
   areaServed: site.areaServed.map((a) => ({ '@type': 'Place', name: a })),
   sameAs: [site.facebook],
   founder: { '@type': 'Person', name: instructor.name },
@@ -630,6 +638,11 @@ function buildContact() {
         <li>${svg('facebook')}<div><strong>Facebook</strong><br>
           <a href="${site.facebook}" rel="noopener">Mountain Maryland Firearms Training</a></div></li>
       </ul>
+
+      <h2>Hours</h2>
+      ${hoursTable()}
+      <p class="hours-note">Classes also run outside these hours by arrangement — call to
+        set up a private session or a weekend class.</p>
 
       <h2>Areas we serve</h2>
       <p>${site.areaServed.map(esc).join(' &middot; ')}</p>

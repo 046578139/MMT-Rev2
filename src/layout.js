@@ -44,6 +44,25 @@ const courseIcon = {
   'self-defense': 'hand',
 };
 
+/**
+ * Hours table. `data-day` lets main.js flag today without re-rendering, and the
+ * <time> pair keeps the machine-readable range next to the human label.
+ */
+function hoursTable(cls = '') {
+  const rows = site.hours
+    .map((h) => {
+      const value = h.closed
+        ? '<span class="closed">Closed</span>'
+        : `<time datetime="${h.opens}">${esc(h.label)}</time>`;
+      return `<div class="hours-row" data-day="${h.day}">
+  <dt>${esc(h.day)}</dt>
+  <dd>${value}</dd>
+</div>`;
+    })
+    .join('\n');
+  return `<dl class="hours${cls ? ' ' + cls : ''}" data-tz="${esc(site.timezone)}">${rows}</dl>`;
+}
+
 const fullAddress = () =>
   `${site.address.street}, ${site.address.locality}, ${site.address.region} ${site.address.postalCode}`;
 
@@ -105,6 +124,10 @@ function footer() {
         <li>${svg('phone')}<a href="tel:${site.phoneHref}">${esc(site.phone)}</a></li>
         <li>${svg('pin')}<address>${esc(a.street)}<br>${esc(a.locality)}, ${esc(a.region)} ${esc(a.postalCode)}</address></li>
       </ul>
+
+      <h2 class="footer-hours-head">Hours</h2>
+      ${hoursTable('hours-compact')}
+
       <a class="btn btn-accent" href="/contact/">Get in touch</a>
     </div>
   </div>
@@ -179,4 +202,4 @@ ${footer()}
 `;
 }
 
-module.exports = { page, esc, svg, courseIcon, fullAddress, header, footer };
+module.exports = { page, esc, svg, courseIcon, fullAddress, hoursTable, header, footer };

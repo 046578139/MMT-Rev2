@@ -74,24 +74,21 @@ meta-refresh stubs cover hosts without redirect support, such as GitHub Pages.
 
 ## Before launch
 
-Three things need a human decision — all are marked `REVIEW` in `src/content.js`:
+Two things need a human decision — both are marked `REVIEW` in `src/content.js`:
 
-1. **The street number conflicts on the old site.** The Contact page said
-   *75 S. Grant Street*; the concealed-carry checklist graphic said
-   *79 South Grant Street*. The site currently uses **75** (the published contact block,
-   and the one with a ZIP). Confirm which is right — it feeds the address shown
-   sitewide and the `LocalBusiness` structured data that Google Maps reads.
-2. **The contact form has no destination.** `site.formEndpoint` is `null`, so the
+1. **The contact form has no destination.** `site.formEndpoint` is `null`, so the
    contact page shows a call-to-book panel instead of a form that would silently
    discard messages. Set it to a Formspree (or similar) endpoint to switch the real
    form on — the markup is already written.
-3. **Prices marked "Call for pricing"** — Wear & Carry (original), RSO, Basic Pistol,
+2. **Prices marked "Call for pricing"** — Wear & Carry (original), RSO, Basic Pistol,
    Basic Rifle, Private Training, and Self Defense. The old site never published these.
    Add a `price` and `priceValue` in `src/content.js` and the figure appears on the
    card, the course page, and its structured data.
 
-Worth adding when someone can supply it: business hours, an email address, and a few
-photos of recent classes.
+Address (79 S Grant St) and opening hours are confirmed and live on the site.
+
+Worth adding when someone can supply it: an email address, and more photos of recent
+classes — see [Adding photos](#adding-photos).
 
 ## Deploying
 

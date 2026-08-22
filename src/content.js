@@ -19,17 +19,29 @@ const site = {
   phone: '240-727-1932',
   phoneHref: '+12407271932',
 
-  // REVIEW: the old site was inconsistent about the street number — the Contact
-  // page read "75 S. Grant Street" while the Concealed Carry Checklist graphic
-  // read "79 South Grant Street". The Contact page value is used here because it
-  // was the published contact block and included the ZIP. Confirm before launch.
   address: {
-    street: '75 S. Grant Street',
+    street: '79 S Grant St',
     locality: 'Frostburg',
     region: 'MD',
     postalCode: '21532',
     country: 'US',
   },
+
+  /**
+   * Opening hours, Monday first. `opens`/`closes` are 24-hour local time and feed
+   * the LocalBusiness structured data; `label` is what visitors read. The business
+   * is in America/New_York, which is also how "today" is highlighted on the page.
+   */
+  timezone: 'America/New_York',
+  hours: [
+    { day: 'Monday',    short: 'Mon', closed: true },
+    { day: 'Tuesday',   short: 'Tue', opens: '12:00', closes: '18:00', label: '12–6 PM' },
+    { day: 'Wednesday', short: 'Wed', opens: '12:00', closes: '18:00', label: '12–6 PM' },
+    { day: 'Thursday',  short: 'Thu', opens: '12:00', closes: '18:00', label: '12–6 PM' },
+    { day: 'Friday',    short: 'Fri', opens: '12:00', closes: '17:00', label: '12–5 PM' },
+    { day: 'Saturday',  short: 'Sat', opens: '09:00', closes: '13:00', label: '9 AM–1 PM' },
+    { day: 'Sunday',    short: 'Sun', closed: true },
+  ],
 
   facebook:
     'https://www.facebook.com/Mountain-Maryland-Firearms-Training-213395412173858/',
