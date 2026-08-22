@@ -429,6 +429,9 @@ address { font-style: normal; }
 
 .figure { margin: 2rem 0 0; }
 .figure img { width: 100%; max-width: 460px; }
+/* Render at the photo's own size so a low-resolution original is never
+   stretched; it still shrinks to fit on narrow screens. */
+.figure-wide img { width: auto; max-width: 100%; }
 .figure figcaption { margin-top: .75rem; font-size: .9rem; color: var(--muted); }
 
 /* ------------------------------------------------------------------- FAQ */

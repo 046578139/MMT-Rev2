@@ -109,17 +109,25 @@ cannot leave stale alt text or a distorted layout behind.
 A slot with no file is skipped rather than rendering a broken image, and `node build.js`
 lists what is still missing. Two placements are wired to light up on their own:
 
-- `range-lesson` becomes the home page hero as soon as it exists, otherwise
-  `hero-range` is used.
 - `shop-interior` and `gun-wall` add a "Visit the shop" section to the contact page;
   with neither present the section does not render at all.
+- A course entry with `photo: '<slot>'` gets that image as a captioned figure.
+
+Slots cropped with `object-fit: cover` can set a `position` in the `photos` map to move
+the crop. Note this only pans along the axis that is actually being cropped — a portrait
+photo in a landscape box crops vertically, so a horizontal value there does nothing.
 
 Slots: `hero-range`, `range-lesson`, `classroom`, `shop-interior`, `gun-wall`,
 `trooper`, `deployment`, `checklist`, `lawshield`. Add a new one with a line in `SLOTS`
 in the script, an entry in `photos`, and a `picture('<slot>')` call in `build.js`.
 
-`photos/` is git-ignored, so keep the masters somewhere safe too. Pillow is only needed
+Originals are kept in `photos/` and versioned with the site, so an image can be
+re-cropped or re-exported later without hunting for the source. Pillow is only needed
 for this tool — `node build.js` still has no dependencies.
+
+Photos never render larger than their own resolution: figures size to the file, and the
+optimizer only ever downscales. If a photo looks soft, the fix is a higher-resolution
+original in `photos/`, not a bigger slot.
 
 ## Deploying
 

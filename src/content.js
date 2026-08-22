@@ -168,6 +168,8 @@ const courses = [
       'Attending the class does not guarantee issuance of a permit. The class is one of ' +
         'several requirements to apply.',
     ],
+    photo: 'range-lesson',
+    photoCaption: 'Live-fire qualification is run on the range as part of the course.',
     checklist: true,
   },
 
@@ -221,6 +223,8 @@ const courses = [
       'Successfully passing this course does not guarantee that your wear and carry permit ' +
         'renewal will be approved.',
     ],
+    photo: 'range-lesson',
+    photoCaption: 'One-on-one coaching through the shooting qualification.',
   },
 
   {
@@ -501,6 +505,8 @@ const photos = {
   },
   'shop-interior': {
     alt: 'Inside the shop: rifle racks, the Maryland State Police flag, and the Mountain Maryland Firearms Training sign',
+    // Pan up to keep the branded counter and the racks behind it in frame.
+    position: '50% 40%',
   },
   'gun-wall': {
     alt: 'A row of shotguns and rifles racked along the shop wall',

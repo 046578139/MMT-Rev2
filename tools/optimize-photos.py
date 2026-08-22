@@ -37,7 +37,7 @@ OUT = os.path.join("public", "assets", "img")
 # opacity behind a dark scrim, so it takes heavy compression without showing it.
 SLOTS = {
     "hero-range":    (1600, 60),   # home hero background
-    "range-lesson":  (1400, 80),   # live-fire instruction
+    "range-lesson":  (1000, 82),   # live-fire instruction, shown as a figure
     "classroom":     (1400, 80),   # classroom session
     "shop-interior": (1400, 80),   # counter and branded sign
     "gun-wall":      (1100, 80),   # rack of long guns

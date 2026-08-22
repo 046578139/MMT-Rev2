@@ -79,7 +79,8 @@ const pickPhoto = (...candidates) => candidates.find(hasPhoto) || null;
 function picture(name, { cls = '', loading = 'lazy', sizes, fetchpriority, alt } = {}) {
   if (!name || !hasPhoto(name)) return '';
   const { width, height } = jpegSize(path.join(IMG_DIR, name + '.jpg'));
-  const text = alt || (photos[name] && photos[name].alt) || '';
+  const meta = photos[name] || {};
+  const text = alt || meta.alt || '';
   if (!text) throw new Error(`No alt text for photo "${name}" — add it to photos in src/content.js`);
 
   const attrs = [
@@ -87,6 +88,7 @@ function picture(name, { cls = '', loading = 'lazy', sizes, fetchpriority, alt }
     `alt="${esc(text)}"`,
     `width="${width}"`,
     `height="${height}"`,
+    meta.position ? `style="object-position:${meta.position}"` : '',
     `loading="${loading}"`,
     loading === 'eager' ? 'decoding="sync"' : 'decoding="async"',
     fetchpriority ? `fetchpriority="${fetchpriority}"` : '',
@@ -183,7 +185,7 @@ function buildHome() {
 
   const body = `
 <section class="hero">
-  ${picture(pickPhoto('range-lesson', 'hero-range'), {
+  ${picture('hero-range', {
     cls: 'hero-bg',
     loading: 'eager',
     fetchpriority: 'high',
@@ -398,6 +400,7 @@ function buildCourse(c) {
   <div class="prose">
     ${sections}
     ${notes}
+    ${c.photo && hasPhoto(c.photo) ? `<figure class="figure figure-wide">${picture(c.photo)}<figcaption>${esc(c.photoCaption || '')}</figcaption></figure>` : ''}
     ${c.checklist ? `<figure class="figure">${picture('checklist', { cls: 'framed' })}<figcaption>The five steps from signing up to submitting your application.</figcaption></figure>` : ''}
   </div>
 </div>
