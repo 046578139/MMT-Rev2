@@ -44,6 +44,9 @@ SLOTS = {
     "rso-coaching":  (1200, 82),   # RSO supervising the firing line
     "wear-carry-class": (1400, 82), # Wear & Carry classroom demonstration
     "hql-class":     (1400, 82),   # HQL classroom session
+    "pistol-basics": (1300, 82),   # one-on-one pistol coaching on the line
+    "rifle-basics":  (1300, 82),   # rifle fundamentals coaching at the bench
+    "private-session": (1300, 82), # one-on-one planning session at the table
     "gun-wall":      (1100, 80),   # rack of long guns
     "trooper":       (700,  82),   # instructor portrait
     "deployment":    (900,  82),   # instructor portrait

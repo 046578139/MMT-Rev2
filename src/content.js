@@ -311,6 +311,8 @@ const courses = [
       'To receive a certificate, students must score 90% or better on the written test and ' +
         'pass the shooting qualification.',
     ],
+    photo: 'pistol-basics',
+    photoCaption: 'One-on-one coaching through the fundamentals on the firing line.',
   },
 
   {
@@ -356,6 +358,8 @@ const courses = [
       'To receive a certificate, students must score 90% or better on the written test and ' +
         'pass the shooting qualification.',
     ],
+    photo: 'rifle-basics',
+    photoCaption: 'Working through position, breath control and trigger control at the bench.',
   },
 
   {
@@ -375,6 +379,8 @@ const courses = [
       'Mountain Maryland Firearms Training offers private lessons and sessions. Available ' +
       'training ranges from very basic firearms handling, use, and knowledge through to ' +
       'advanced gun drills. Each scenario is based on the individual student’s needs and goals.',
+    photo: 'private-session',
+    photoCaption: 'Every session starts with what you actually want to get out of it.',
     sections: [
       {
         heading: 'Good for',
@@ -513,6 +519,20 @@ const photos = {
   },
   classroom: {
     alt: 'A full classroom of students during a Mountain Maryland Firearms Training session',
+  },
+  'private-session': {
+    alt: 'An instructor planning a one-on-one training session with a student',
+    position: '50% 42%',
+  },
+  'rifle-basics': {
+    alt: 'An instructor coaching a shooter through rifle fundamentals at the bench',
+    // Instructor and shooter occupy the upper-middle; hold their faces and the rifle.
+    position: '50% 40%',
+  },
+  'pistol-basics': {
+    alt: 'An instructor coaching a shooter through pistol fundamentals on the firing line',
+    // Instructor and shooter sit centre-frame; hold them rather than the bench.
+    position: '50% 42%',
   },
   'hql-class': {
     alt: 'An instructor teaching Maryland handgun law to a Maryland HQL class',

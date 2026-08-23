@@ -89,13 +89,18 @@ meta-refresh stubs cover hosts without redirect support, such as GitHub Pages.
 
 Three things need a human decision — all marked `REVIEW` in `src/content.js`:
 
-0. **Two supplied photos carry other businesses' branding.** `counter-service` (shop
-   page lead) shows a Vortex cap and polo, and `rso-coaching` (RSO course) shows an
-   NRA-uniformed officer on an indoor range, where this range is outdoors. Both read as
-   stock or manufacturer marketing images of other premises. Confirm there is a licence
-   for each, and note a customer may arrive expecting what the picture shows.
-   `hql-class` and `wear-carry-class` are fine — both carry this business's own
-   branding. Replacing the remaining two the same way would settle this entirely.
+0. **Branding to clean up in four photos.**
+   - `counter-service` (shop page lead) shows a Vortex cap and polo, and `rso-coaching`
+     (RSO course) shows an NRA-uniformed officer on an indoor range where this range is
+     outdoors. Both are images of other premises entirely — confirm there is a licence,
+     and note a customer may arrive expecting what the picture shows.
+   - `pistol-basics` and `private-session` are otherwise on-brand but each carries a
+     leftover "101 TRAINING" mark: embossed on the shooting bench in the first, and on
+     the presentation screen in the second. The card crops happen to exclude both, but
+     the full-size figures on the course pages show them plainly. Worth having those two
+     regenerated without the mark.
+
+   `hql-class`, `wear-carry-class` and `rifle-basics` are clean.
 
 0. **The shop page's NFA wording and the transfer fee.** Transferring suppressors and
    SBRs requires an SOT in addition to the FFL — confirm the exact licensing wording.
@@ -148,7 +153,8 @@ the crop. Note this only pans along the axis that is actually being cropped — 
 photo in a landscape box crops vertically, so a horizontal value there does nothing.
 
 Slots: `hero-range`, `range-lesson`, `classroom`, `hql-class`, `wear-carry-class`,
-`counter-service`, `rso-coaching`, `shop-interior`, `gun-wall`,
+`pistol-basics`, `rifle-basics`, `private-session`, `counter-service`, `rso-coaching`,
+`shop-interior`, `gun-wall`,
 `trooper`, `deployment`, `checklist`, `lawshield`. Add a new one with a line in `SLOTS`
 in the script, an entry in `photos`, and a `picture('<slot>')` call in `build.js`.
 
