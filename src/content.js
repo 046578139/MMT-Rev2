@@ -71,6 +71,7 @@ const site = {
 const nav = [
   { label: 'Home', href: '/', primary: true },
   { label: 'Courses', href: '/courses/', primary: true },
+  { label: 'The Shop', href: '/shop/', primary: true },
   { label: 'Your Instructor', href: '/instructor/', primary: true },
   { label: 'FAQ', href: '/faq/', primary: true },
   { label: 'Contact', href: '/contact/', primary: true },
@@ -525,6 +526,72 @@ const photos = {
   },
 };
 
+/**
+ * The retail side of the business — the shop counter, not the classroom.
+ *
+ * REVIEW before launch: NFA items (suppressors, SBRs) can only be transferred by
+ * a dealer holding an SOT in addition to the FFL. The copy below says these are
+ * offered and ordered, which is what the owner described; confirm the exact
+ * licensing wording, and confirm whether transfers for outside purchases are
+ * offered and at what fee, before publishing.
+ */
+const retail = {
+  eyebrow: 'The shop',
+  title: 'A full counter, not just a classroom',
+  lede:
+    'Mountain Maryland Firearms Training is a working gun shop as well as a training ' +
+    'provider. Come in and handle what you are considering, ask questions without a ' +
+    'sales pitch, and get straight answers from someone who has carried a firearm ' +
+    'professionally for thirty years.',
+  categories: [
+    {
+      icon: 'target',
+      name: 'Pistols',
+      body: 'Carry guns, full-size duty pistols, revolvers, and rimfire — from budget-friendly to premium.',
+    },
+    {
+      icon: 'shield',
+      name: 'Rifles & shotguns',
+      body: 'Sporting, hunting, and defensive long guns, including bolt, pump, semi-automatic, and lever actions.',
+    },
+    {
+      icon: 'check',
+      name: 'SBRs & NFA items',
+      body: 'Short-barreled rifles and other NFA-regulated items, ordered and transferred through the shop.',
+    },
+    {
+      icon: 'hand',
+      name: 'Suppressors',
+      body: 'Cans for rimfire through centerfire, with help through the ATF paperwork and the wait that comes with it.',
+    },
+    {
+      icon: 'tag',
+      name: 'Ammunition & optics',
+      body: 'Range and defensive ammunition, optics, lights, and the accessories that actually get used.',
+    },
+    {
+      icon: 'user',
+      name: 'Advice that fits you',
+      body: 'The right first pistol is the one you will carry and practice with. We will help you find it.',
+    },
+  ],
+  note:
+    'Stock moves constantly, and anything not on the shelf can usually be ordered. ' +
+    'Call <a href="tel:+12407271932">240-727-1932</a> to check current availability ' +
+    'before making the drive.',
+  nfaNote:
+    'NFA transfers — suppressors and SBRs — involve ATF paperwork and a waiting period. ' +
+    'We will walk you through the process and keep you posted while it runs.',
+};
+
+/**
+ * Manufacturers carried. Rendered as text wordmarks until a logo file exists at
+ * public/assets/img/brands/<slug>.(svg|png) — drop one in and it takes over, the
+ * same way photo slots work. Only list brands actually carried, and only display
+ * a manufacturer's logo where their dealer terms allow it.
+ */
+const brands = [];
+
 /** Instructor bio, lightly copy-edited from the old "Meet our Trainers" page. */
 const instructor = {
   name: 'John Sagal',
@@ -558,4 +625,4 @@ const instructor = {
   ],
 };
 
-module.exports = { site, nav, courses, faqs, instructor, photos };
+module.exports = { site, nav, courses, faqs, instructor, photos, retail, brands };

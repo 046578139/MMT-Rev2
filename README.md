@@ -60,6 +60,18 @@ course cost and length surfaced on cards rather than buried in prose, a five-ste
 Wear & Carry explainer built from the shop's own checklist graphic, breadcrumbs,
 skip link, keyboard-operable mobile menu, and a print stylesheet.
 
+### Visual direction
+
+Gunmetal ground, not white. Neutrals carry a slight blue bias toward the brand steel
+so they read as chosen rather than inherited. Two accents with distinct jobs: the brand
+steel (sampled from the shop's signage) carries links and structure, and a hi-vis
+yellow-green — sampled from the target silhouettes in the range photo — is reserved for
+primary actions and live state. Corners are tight (3px) and card icon panels carry a
+faint diagonal hatch, so surfaces read like equipment rather than app chrome.
+
+Every foreground/background pair in the palette was checked against WCAG AA; the
+tightest is muted body text on a card surface at 4.84:1.
+
 ### Accessibility and SEO
 
 Every page: one `<h1>`, no heading-level skips, alt text on all images, visible focus
@@ -75,7 +87,12 @@ meta-refresh stubs cover hosts without redirect support, such as GitHub Pages.
 
 ## Before launch
 
-Two things need a human decision — both are marked `REVIEW` in `src/content.js`:
+Three things need a human decision — all marked `REVIEW` in `src/content.js`:
+
+0. **The shop page's NFA wording.** Transferring suppressors and SBRs requires an SOT
+   in addition to the FFL. The copy says these are ordered and transferred through the
+   shop, which is what was described — confirm the exact licensing wording, and whether
+   transfers for outside purchases are offered and at what fee.
 
 1. **The contact form has no destination.** `site.formEndpoint` is `null`, so the
    contact page shows a call-to-book panel instead of a form that would silently

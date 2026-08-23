@@ -9,7 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { site, nav, courses, faqs, instructor, photos } = require('./src/content');
+const { site, nav, courses, faqs, instructor, photos, retail, brands } = require('./src/content');
 const { page, esc, svg, courseIcon, fullAddress, hoursTable } = require('./src/layout');
 
 const DIST = path.join(__dirname, 'dist');
@@ -100,6 +100,49 @@ function picture(name, { cls = '', loading = 'lazy', sizes, fetchpriority, alt }
   <source srcset="/assets/img/${name}.webp" type="image/webp">
   <img ${attrs}>
 </picture>`;
+}
+
+/** Retail categories as a spec-sheet grid. */
+function retailGrid() {
+  return `<div class="grid grid-3 kit">
+${retail.categories
+  .map(
+    (c) => `  <article class="kit-item">
+    <div class="kit-icon">${svg(c.icon)}</div>
+    <h3>${esc(c.name)}</h3>
+    <p>${esc(c.body)}</p>
+  </article>`
+  )
+  .join('\n')}
+</div>`;
+}
+
+/**
+ * Brand strip. A brand renders as a text wordmark until a logo file is dropped at
+ * public/assets/img/brands/<slug>.(svg|png), at which point the logo takes over.
+ * Returns '' when no brands are listed, so nothing empty is published.
+ */
+function brandStrip() {
+  if (!brands.length) return '';
+  const items = brands
+    .map((b) => {
+      const svgPath = path.join(IMG_DIR, 'brands', b.slug + '.svg');
+      const pngPath = path.join(IMG_DIR, 'brands', b.slug + '.png');
+      const file = fs.existsSync(svgPath) ? `${b.slug}.svg` : fs.existsSync(pngPath) ? `${b.slug}.png` : null;
+      return file
+        ? `<li><img src="/assets/img/brands/${file}" alt="${esc(b.name)}" loading="lazy"></li>`
+        : `<li><span class="brand-word">${esc(b.name)}</span></li>`;
+    })
+    .join('\n      ');
+  return `
+<section class="section brands-section">
+  <div class="wrap">
+    <h2 class="brands-head">Brands we carry</h2>
+    <ul class="brand-strip plain">
+      ${items}
+    </ul>
+  </div>
+</section>`;
 }
 
 function courseCard(c) {
@@ -228,10 +271,29 @@ function buildHome() {
   </div>
 </section>
 
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="split split-reverse">
+      <div class="split-media">
+        ${picture(pickPhoto('gun-wall', 'shop-interior'), { cls: 'framed' })}
+      </div>
+      <div class="split-body">
+        <p class="eyebrow">${esc(retail.eyebrow)}</p>
+        <h2>${esc(retail.title)}</h2>
+        <p>${esc(retail.lede)}</p>
+        <ul class="ticks plain">
+          ${retail.categories.slice(0, 4).map((c) => `<li>${svg('check')}<strong>${esc(c.name)}</strong></li>`).join('\n          ')}
+        </ul>
+        <a class="btn btn-outline" href="/shop/">See what we carry ${svg('arrow')}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="wrap section">
   <div class="split">
     <div class="split-media">
-      ${picture('classroom')}
+      ${picture('deployment')}
     </div>
     <div class="split-body">
       <p class="eyebrow">Your instructor</p>
@@ -464,6 +526,109 @@ ${ctaBand()}
           { label: 'Home', href: '/' },
           { label: 'Courses', href: '/courses/' },
           { label: c.title, href: `/courses/${c.slug}/` },
+        ]),
+      ],
+    })
+  );
+}
+
+/* -------------------------------------------------------------- shop page */
+
+function buildShop() {
+  const shopPhotos = ['shop-interior', 'gun-wall'].filter(hasPhoto);
+
+  const body = `
+<section class="page-head">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <span aria-current="page">The Shop</span></nav>
+    <p class="eyebrow">${esc(retail.eyebrow)}</p>
+    <h1>${esc(retail.title)}</h1>
+    <p class="lede">${esc(retail.lede)}</p>
+    <div class="hero-actions">
+      <a class="btn btn-accent btn-lg" href="tel:${site.phoneHref}">${svg('phone')}<span>Check stock — ${esc(site.phone)}</span></a>
+      <a class="btn btn-ghost btn-lg" href="/contact/">Find us</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="section-head">
+    <h2>What's on the counter</h2>
+    <p>Stock changes week to week. If you do not see it, ask — most things can be ordered.</p>
+  </div>
+  ${retailGrid()}
+  <aside class="callout" role="note">
+    <h2>Before you drive out</h2>
+    <ul class="plain"><li>${retail.note}</li></ul>
+  </aside>
+</section>
+
+${
+  shopPhotos.length
+    ? `<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head"><h2>Inside the shop</h2></div>
+    <div class="grid grid-${shopPhotos.length}">
+      ${shopPhotos.map((n) => `<figure class="shop-shot">${picture(n, { cls: 'framed' })}</figure>`).join('\n      ')}
+    </div>
+  </div>
+</section>`
+    : ''
+}
+
+<section class="wrap section">
+  <div class="split">
+    <div class="split-body">
+      <p class="eyebrow">NFA</p>
+      <h2>Suppressors and SBRs</h2>
+      <p>${esc(retail.nfaNote)}</p>
+      <a class="btn btn-outline" href="/contact/">Ask about an NFA item ${svg('arrow')}</a>
+    </div>
+    <div class="split-media">${picture('gun-wall', { cls: 'framed' })}</div>
+  </div>
+</section>
+${brandStrip()}
+${ctaBand('Stop in, or call ahead', `The shop is at ${fullAddress()}. Call ${site.phone} to check stock or ask about an order.`)}
+`;
+
+  writePage(
+    track('/shop/', '0.9'),
+    page({
+      title: 'Gun Shop in Frostburg, MD — Pistols, Rifles, Suppressors',
+      description:
+        'Pistols, rifles, shotguns, SBRs, NFA items and suppressors, plus ammunition and ' +
+        'optics, at Mountain Maryland Firearms Training in Frostburg, MD.',
+      path: '/shop/',
+      ogImage: '/assets/img/shop-interior.jpg',
+      body,
+      schema: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Store',
+          name: site.name,
+          '@id': site.origin + '/#business',
+          url: site.origin + '/shop/',
+          telephone: site.phone,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: site.address.street,
+            addressLocality: site.address.locality,
+            addressRegion: site.address.region,
+            postalCode: site.address.postalCode,
+            addressCountry: site.address.country,
+          },
+          department: {
+            '@type': 'Store',
+            name: 'Firearms retail',
+            makesOffer: retail.categories.map((c) => ({
+              '@type': 'Offer',
+              itemOffered: { '@type': 'Product', name: c.name, description: c.body },
+            })),
+          },
+        },
+        breadcrumbs([
+          { label: 'Home', href: '/' },
+          { label: 'The Shop', href: '/shop/' },
         ]),
       ],
     })
@@ -836,6 +1001,7 @@ function main() {
   buildHome();
   buildCourseIndex();
   courses.forEach(buildCourse);
+  buildShop();
   buildInstructor();
   buildFaq();
   buildContact();
