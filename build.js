@@ -306,12 +306,7 @@ function buildHome() {
   </div>
 </section>
 
-<section class="wrap section services-section">
-  <h2 class="sr-only">What we do</h2>
-  ${serviceStrip()}
-</section>
-
-<section class="wrap section section-tight">
+<section class="wrap section">
   <div class="section-head">
     <h2>Which class do you need?</h2>
     <p>Most people come to us for one of these three. If you are not sure which applies to
@@ -322,6 +317,13 @@ function buildHome() {
 
 <section class="section section-alt">
   <div class="wrap">
+    <h2 class="sr-only">What we do</h2>
+    ${serviceStrip()}
+  </div>
+</section>
+
+<section class="wrap section">
+  <div>
     <div class="section-head">
       <h2>Also offered</h2>
       <p>Certification courses, private instruction, and empty-hand self defense.</p>
@@ -330,8 +332,8 @@ function buildHome() {
   </div>
 </section>
 
-<section class="wrap section">
-  <div class="split split-reverse">
+<section class="section section-alt">
+  <div class="wrap split split-reverse">
     <div class="split-media">
       ${picture(pickPhoto('gun-wall', 'shop-interior'), { cls: 'framed' })}
     </div>
@@ -344,8 +346,8 @@ function buildHome() {
   </div>
 </section>
 
-<section class="section section-alt">
-  <div class="wrap">
+<section class="wrap section">
+  <div>
     <div class="section-head">
       <h2>What's on the counter</h2>
       <p>Stock changes week to week. If you do not see it, ask — most things can be ordered.</p>
@@ -355,8 +357,8 @@ function buildHome() {
   </div>
 </section>
 
-<section class="wrap section">
-  <div class="split">
+<section class="section section-alt">
+  <div class="wrap split">
     <div class="split-media">
       ${picture('deployment')}
     </div>
@@ -372,8 +374,8 @@ function buildHome() {
   </div>
 </section>
 
-<section class="section section-alt">
-  <div class="wrap">
+<section class="wrap section">
+  <div>
     <div class="split split-reverse">
       <div class="split-media">
         ${picture('checklist', { cls: 'framed' })}
