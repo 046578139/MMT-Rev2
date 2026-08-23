@@ -13,8 +13,8 @@ const site = {
   origin: 'https://www.mountainmdft.com',
   tagline: 'Maryland HQL, Wear & Carry, and NRA firearms training in Frostburg.',
   description:
-    'HQL, Wear & Carry, and NRA firearms courses in Frostburg, MD, taught by a Maryland ' +
-    'State Police Qualified Handgun Instructor and retired Trooper.',
+    'Firearms training and a full gun shop in Frostburg, MD. HQL and Wear & Carry ' +
+    'courses, plus sales, trades, FFL transfers, suppressors and NFA items.',
 
   phone: '240-727-1932',
   phoneHref: '+12407271932',
@@ -411,6 +411,8 @@ const courses = [
       'John is a Certified Master Instructor and 4th Dan Black Belt in the Korean martial art ' +
       'of Hapkido — a martial art that promotes mind and body coordination coupled with joint ' +
       'manipulation techniques for self defense.',
+    photo: 'pistol-handling',
+    photoCaption: 'One-on-one instruction at Mountain Maryland Firearms Training.',
     sections: [
       {
         heading: 'Why train empty-hand skills',
@@ -519,6 +521,10 @@ const photos = {
   },
   classroom: {
     alt: 'A full classroom of students during a Mountain Maryland Firearms Training session',
+  },
+  'pistol-handling': {
+    alt: 'An instructor showing a student how a pistol works across the table',
+    position: '50% 44%',
   },
   'private-session': {
     alt: 'An instructor planning a one-on-one training session with a student',

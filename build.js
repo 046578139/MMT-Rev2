@@ -259,24 +259,31 @@ function buildHome() {
   })}
   <div class="wrap hero-inner">
     <p class="eyebrow">Frostburg, Maryland &middot; Allegany County</p>
-    <h1>Maryland firearms training from a retired State Trooper.</h1>
+    <h1>Firearms training and a full gun counter, under one roof.</h1>
     <p class="lede">
       HQL, Wear &amp; Carry, and NRA certification courses taught by a Maryland State Police
-      Qualified Handgun Instructor with 30+ years carrying a firearm for a living.
+      Qualified Handgun Instructor — and a working shop for sales, trades, transfers,
+      suppressors and NFA items.
     </p>
     <div class="hero-actions">
       <a class="btn btn-accent btn-lg" href="/courses/">See courses &amp; pricing</a>
+      <a class="btn btn-ghost btn-lg" href="/shop/">Visit the shop</a>
       <a class="btn btn-ghost btn-lg" href="tel:${site.phoneHref}">${svg('phone')}<span>${esc(site.phone)}</span></a>
     </div>
     <ul class="trust plain">
       <li>${svg('check')}MSP Qualified Handgun Instructor</li>
       <li>${svg('check')}NRA Certified Instructor &amp; RSO</li>
-      <li>${svg('check')}Loaner firearms available</li>
+      <li>${svg('check')}Buy, sell, trade &amp; FFL transfers</li>
     </ul>
   </div>
 </section>
 
-<section class="wrap section">
+<section class="wrap section services-section">
+  <h2 class="sr-only">What we do</h2>
+  ${serviceStrip()}
+</section>
+
+<section class="wrap section section-tight">
   <div class="section-head">
     <h2>Which class do you need?</h2>
     <p>Most people come to us for one of these three. If you are not sure which applies to
@@ -295,23 +302,28 @@ function buildHome() {
   </div>
 </section>
 
+<section class="wrap section">
+  <div class="split split-reverse">
+    <div class="split-media">
+      ${picture(pickPhoto('gun-wall', 'shop-interior'), { cls: 'framed' })}
+    </div>
+    <div class="split-body">
+      <p class="eyebrow">${esc(retail.eyebrow)}</p>
+      <h2>${esc(retail.title)}</h2>
+      <p>${esc(retail.lede)}</p>
+      <a class="btn btn-outline" href="/shop/">See what we carry ${svg('arrow')}</a>
+    </div>
+  </div>
+</section>
+
 <section class="section section-alt">
   <div class="wrap">
-    <div class="split split-reverse">
-      <div class="split-media">
-        ${picture(pickPhoto('gun-wall', 'shop-interior'), { cls: 'framed' })}
-      </div>
-      <div class="split-body">
-        <p class="eyebrow">${esc(retail.eyebrow)}</p>
-        <h2>${esc(retail.title)}</h2>
-        <p>${esc(retail.lede)}</p>
-        <ul class="ticks plain">
-          ${retail.categories.slice(0, 4).map((c) => `<li>${svg('check')}<strong>${esc(c.name)}</strong></li>`).join('\n          ')}
-        </ul>
-        <p class="service-line">${retail.services.map((sv) => esc(sv.name)).join(' &middot; ')}</p>
-        <a class="btn btn-outline" href="/shop/">See what we carry ${svg('arrow')}</a>
-      </div>
+    <div class="section-head">
+      <h2>What's on the counter</h2>
+      <p>Stock changes week to week. If you do not see it, ask — most things can be ordered.</p>
     </div>
+    ${retailGrid()}
+    <p class="section-cta"><a class="btn btn-outline" href="/shop/">More about the shop ${svg('arrow')}</a></p>
   </div>
 </section>
 
@@ -354,13 +366,13 @@ function buildHome() {
   </div>
 </section>
 
-${ctaBand()}
+${ctaBand('Come in, or call ahead', `Call ${site.phone} to check class dates, ask about stock, or start a transfer. The shop is at ${fullAddress()}.`)}
 `;
 
   writePage(
     track('/', '1.0', 'weekly'),
     page({
-      title: `Maryland HQL & Wear and Carry Classes — Frostburg, MD`,
+      title: 'Firearms Training & Gun Shop — Frostburg, MD',
       description: site.description,
       path: '/',
       body,

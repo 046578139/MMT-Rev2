@@ -47,6 +47,7 @@ SLOTS = {
     "pistol-basics": (1300, 82),   # one-on-one pistol coaching on the line
     "rifle-basics":  (1300, 82),   # rifle fundamentals coaching at the bench
     "private-session": (1300, 82), # one-on-one planning session at the table
+    "pistol-handling": (1300, 82), # one-on-one handling instruction at the table
     "gun-wall":      (1100, 80),   # rack of long guns
     "trooper":       (700,  82),   # instructor portrait
     "deployment":    (900,  82),   # instructor portrait

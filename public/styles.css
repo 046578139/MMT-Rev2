@@ -602,6 +602,8 @@ address { font-style: normal; }
 }
 .service p { color: var(--muted); font-size: .97rem; margin: 0; }
 
+.section-cta { margin-top: 1.75rem; margin-bottom: 0; }
+
 .service-line {
   font-family: var(--font-head);
   font-size: .92rem; letter-spacing: .05em; text-transform: uppercase;
