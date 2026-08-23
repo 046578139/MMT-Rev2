@@ -32,6 +32,14 @@ const site = {
    * the LocalBusiness structured data; `label` is what visitors read. The business
    * is in America/New_York, which is also how "today" is highlighted on the page.
    */
+  /**
+   * Photo behind the home page hero, and its crop focus there. The hero needs a
+   * different focal point from the same photo's card crop, which is set to sit
+   * clear of the logo overlay, so it is specified separately.
+   */
+  heroPhoto: 'wear-carry-class',
+  heroPosition: '50% 40%',
+
   timezone: 'America/New_York',
   hours: [
     { day: 'Monday',    short: 'Mon', closed: true },

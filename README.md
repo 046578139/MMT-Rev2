@@ -70,7 +70,13 @@ primary actions and live state. Corners are tight (3px) and card icon panels car
 faint diagonal hatch, so surfaces read like equipment rather than app chrome.
 
 Every foreground/background pair in the palette was checked against WCAG AA; the
-tightest is muted body text on a card surface at 4.84:1.
+tightest is muted body text on a card surface at 4.84:1. Hero text was measured
+separately against the photo as it actually renders — every block clears AA against the
+brightest pixel behind it, not the average.
+
+The hero background is `site.heroPhoto` in `src/content.js`, with `site.heroPosition`
+for its crop focus. The focus is kept separate from the slot's own `position` because
+the hero and the card want different framing from the same photo.
 
 ### Accessibility and SEO
 

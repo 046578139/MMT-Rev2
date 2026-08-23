@@ -76,7 +76,7 @@ const pickPhoto = (...candidates) => candidates.find(hasPhoto) || null;
  * are looked up rather than passed in. Returns '' for a slot with no file, so a
  * not-yet-supplied photo degrades to nothing instead of a broken image.
  */
-function picture(name, { cls = '', loading = 'lazy', sizes, fetchpriority, alt } = {}) {
+function picture(name, { cls = '', loading = 'lazy', sizes, fetchpriority, alt, position } = {}) {
   if (!name || !hasPhoto(name)) return '';
   const { width, height } = jpegSize(path.join(IMG_DIR, name + '.jpg'));
   const meta = photos[name] || {};
@@ -88,7 +88,7 @@ function picture(name, { cls = '', loading = 'lazy', sizes, fetchpriority, alt }
     `alt="${esc(text)}"`,
     `width="${width}"`,
     `height="${height}"`,
-    meta.position ? `style="object-position:${meta.position}"` : '',
+    position || meta.position ? `style="object-position:${position || meta.position}"` : '',
     `loading="${loading}"`,
     loading === 'eager' ? 'decoding="sync"' : 'decoding="async"',
     fetchpriority ? `fetchpriority="${fetchpriority}"` : '',
@@ -252,8 +252,9 @@ function buildHome() {
 
   const body = `
 <section class="hero">
-  ${picture('hero-range', {
+  ${picture(pickPhoto(site.heroPhoto, 'hero-range'), {
     cls: 'hero-bg',
+    position: site.heroPosition,
     loading: 'eager',
     fetchpriority: 'high',
   })}
