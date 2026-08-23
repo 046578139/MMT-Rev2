@@ -169,8 +169,10 @@ const courses = [
       'Attending the class does not guarantee issuance of a permit. The class is one of ' +
         'several requirements to apply.',
     ],
-    photo: 'range-lesson',
-    photoCaption: 'Live-fire qualification is run on the range as part of the course.',
+    // wear-carry-class takes over as soon as its file exists; until then the
+    // range photo stands in.
+    photo: ['wear-carry-class', 'range-lesson'],
+    photoCaption: 'Classroom instruction and live-fire qualification are both part of the course.',
     checklist: true,
   },
 
@@ -509,6 +511,9 @@ const photos = {
   },
   classroom: {
     alt: 'A full classroom of students during a Mountain Maryland Firearms Training session',
+  },
+  'wear-carry-class': {
+    alt: 'An instructor demonstrating a holster and pistol to a Wear and Carry class',
   },
   'rso-coaching': {
     alt: 'An NRA Range Safety Officer coaching a shooter on the firing line',

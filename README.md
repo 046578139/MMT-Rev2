@@ -139,7 +139,9 @@ lists what is still missing. Two placements are wired to light up on their own:
 - `shop-interior` and `gun-wall` add a "Visit the shop" section to the contact page;
   with neither present the section does not render at all.
 - A course entry with `photo: '<slot>'` gets that image as its card header, replacing
-  the icon panel, and as a captioned figure on the course page.
+  the icon panel, and as a captioned figure on the course page. `photo` also accepts an
+  array of slots in preference order, so a better photo takes over both placements the
+  moment its file appears — Wear & Carry uses `['wear-carry-class', 'range-lesson']`.
 
 Slots cropped with `object-fit: cover` can set a `position` in the `photos` map to move
 the crop. Note this only pans along the axis that is actually being cropped — a portrait

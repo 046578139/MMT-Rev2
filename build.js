@@ -160,13 +160,16 @@ function brandStrip() {
 </section>`;
 }
 
+/** A course's photo slot: first of its candidates that has a file, or null. */
+const coursePhoto = (c) => (c.photo ? pickPhoto(...[].concat(c.photo)) : null);
+
 function courseCard(c) {
   // A course with a photo shows it; the rest keep the icon panel. Both headers
   // are the same height so cards stay aligned across a row either way.
-  const head =
-    c.photo && hasPhoto(c.photo)
-      ? `<div class="card-media">${picture(c.photo)}</div>`
-      : `<div class="card-icon">${svg(courseIcon[c.slug])}</div>`;
+  const photo = coursePhoto(c);
+  const head = photo
+    ? `<div class="card-media">${picture(photo)}</div>`
+    : `<div class="card-icon">${svg(courseIcon[c.slug])}</div>`;
   return `<article class="card">
   ${head}
   <div class="card-body">
@@ -484,7 +487,7 @@ function buildCourse(c) {
   <div class="prose">
     ${sections}
     ${notes}
-    ${c.photo && hasPhoto(c.photo) ? `<figure class="figure figure-wide">${picture(c.photo)}<figcaption>${esc(c.photoCaption || '')}</figcaption></figure>` : ''}
+    ${coursePhoto(c) ? `<figure class="figure figure-wide">${picture(coursePhoto(c))}<figcaption>${esc(c.photoCaption || '')}</figcaption></figure>` : ''}
     ${c.checklist ? `<figure class="figure">${picture('checklist', { cls: 'framed' })}<figcaption>The five steps from signing up to submitting your application.</figcaption></figure>` : ''}
   </div>
 </div>
