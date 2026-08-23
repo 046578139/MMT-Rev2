@@ -89,12 +89,13 @@ meta-refresh stubs cover hosts without redirect support, such as GitHub Pages.
 
 Three things need a human decision — all marked `REVIEW` in `src/content.js`:
 
-0. **The shop page's lead photo.** `counter-service` is a polished retail image that
-   does not show this shop — the interior, fixtures and staff branding are someone
-   else's, and a Vortex cap and polo are clearly visible. It reads as a stock or
-   manufacturer marketing photo. Confirm there is a licence to use it, and be aware a
-   customer may arrive expecting the store in the picture. A photo of the real counter
-   would do the same job and be true.
+0. **Two supplied photos are not of this business.** `counter-service` (shop page lead)
+   and `rso-coaching` (RSO course) are polished images showing other premises, staff and
+   branding — a Vortex cap and polo in one, NRA-branded RSO uniform and an indoor range
+   in the other, where this range is outdoors. Both read as stock or manufacturer
+   marketing photos. Confirm there is a licence for each, and note that a customer may
+   arrive expecting what the picture shows. The real classroom and range photos already
+   in `photos/` are truer and would do the same job.
 
 0. **The shop page's NFA wording and the transfer fee.** Transferring suppressors and
    SBRs requires an SOT in addition to the FFL — confirm the exact licensing wording.
@@ -137,13 +138,15 @@ lists what is still missing. Two placements are wired to light up on their own:
 
 - `shop-interior` and `gun-wall` add a "Visit the shop" section to the contact page;
   with neither present the section does not render at all.
-- A course entry with `photo: '<slot>'` gets that image as a captioned figure.
+- A course entry with `photo: '<slot>'` gets that image as its card header, replacing
+  the icon panel, and as a captioned figure on the course page.
 
 Slots cropped with `object-fit: cover` can set a `position` in the `photos` map to move
 the crop. Note this only pans along the axis that is actually being cropped — a portrait
 photo in a landscape box crops vertically, so a horizontal value there does nothing.
 
-Slots: `hero-range`, `range-lesson`, `classroom`, `counter-service`, `shop-interior`, `gun-wall`,
+Slots: `hero-range`, `range-lesson`, `classroom`, `counter-service`, `rso-coaching`,
+`shop-interior`, `gun-wall`,
 `trooper`, `deployment`, `checklist`, `lawshield`. Add a new one with a line in `SLOTS`
 in the script, an entry in `photos`, and a `picture('<slot>')` call in `build.js`.
 

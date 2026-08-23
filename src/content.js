@@ -261,6 +261,9 @@ const courses = [
       'Course dates are scheduled on demand. Call <a href="tel:+12407271932">240-727-1932</a> ' +
         'for the next available date and current pricing.',
     ],
+    photo: 'rso-coaching',
+    photoCaption:
+      'A Range Safety Officer supervising the firing line and coaching a shooter through a string.',
   },
 
   {
@@ -497,12 +500,18 @@ const faqs = [
 const photos = {
   'range-lesson': {
     alt: 'An instructor coaching a student through live-fire practice on the range',
+    // Portrait source: in a wide card band this crops vertically, and centre
+    // lands on legs. Bias upward to hold the shooter and the targets.
+    position: '50% 26%',
   },
   'hero-range': {
     alt: 'A shooter practicing on the range under instruction',
   },
   classroom: {
     alt: 'A full classroom of students during a Mountain Maryland Firearms Training session',
+  },
+  'rso-coaching': {
+    alt: 'An NRA Range Safety Officer coaching a shooter on the firing line',
   },
   'counter-service': {
     alt: 'A customer being shown a pistol across the shop counter',

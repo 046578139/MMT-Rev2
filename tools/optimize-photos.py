@@ -41,6 +41,7 @@ SLOTS = {
     "classroom":     (1400, 80),   # classroom session
     "shop-interior": (1400, 80),   # counter and branded sign
     "counter-service": (1400, 80), # customer being helped at the counter
+    "rso-coaching":  (1200, 82),   # RSO supervising the firing line
     "gun-wall":      (1100, 80),   # rack of long guns
     "trooper":       (700,  82),   # instructor portrait
     "deployment":    (900,  82),   # instructor portrait

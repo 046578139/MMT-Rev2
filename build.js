@@ -161,8 +161,14 @@ function brandStrip() {
 }
 
 function courseCard(c) {
+  // A course with a photo shows it; the rest keep the icon panel. Both headers
+  // are the same height so cards stay aligned across a row either way.
+  const head =
+    c.photo && hasPhoto(c.photo)
+      ? `<div class="card-media">${picture(c.photo)}</div>`
+      : `<div class="card-icon">${svg(courseIcon[c.slug])}</div>`;
   return `<article class="card">
-  <div class="card-icon">${svg(courseIcon[c.slug])}</div>
+  ${head}
   <div class="card-body">
     ${c.badge ? `<p class="badge">${esc(c.badge)}</p>` : ''}
     <h3><a href="/courses/${c.slug}/">${esc(c.title)}</a></h3>
