@@ -88,8 +88,11 @@ now carry the same idea: a small qualifier line over the photo with one large wo
 beneath it. The word *is* the card's heading rather than a decoration repeating it, so
 there is still one heading per card.
 
-A course gets this treatment by having `kicker` and `bigWord` in `src/content.js`; any
-course without them renders the standard card. The word is sized in container query
+All eight courses now use it — HQL, TRAINING, RENEWAL, RSO, PISTOL, RIFLE, 1-ON-1,
+HAPKIDO — with the big word acting as the short form of the qualifier above it, the way
+"HQL" stands for "Maryland Handgun Qualification License". A course gets the treatment
+by having `kicker` and `bigWord` in `src/content.js`; any course without them renders
+the standard icon-panel card. The word is sized in container query
 units against the card, not the viewport — sized against the viewport, "RENEWAL" came
 within a few pixels of the card edges and overflowed at some widths.
 

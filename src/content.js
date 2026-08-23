@@ -249,6 +249,8 @@ const courses = [
   {
     slug: 'range-safety-officer',
     title: 'NRA Range Safety Officer',
+    kicker: 'NRA Range Safety Officer',
+    bigWord: 'RSO',
     fullTitle: 'NRA Range Safety Officer (RSO) Certification',
     short: 'Certification course for those who will supervise a range.',
     price: 'Call for pricing',
@@ -287,6 +289,8 @@ const courses = [
   {
     slug: 'basic-pistol',
     title: 'NRA Basics of Pistol Shooting',
+    kicker: 'NRA Basics of Pistol Shooting',
+    bigWord: 'Pistol',
     fullTitle: 'NRA Basics of Pistol Shooting',
     short: 'The knowledge, skills, and attitude for owning and using a pistol safely.',
     price: 'Call for pricing',
@@ -332,6 +336,8 @@ const courses = [
   {
     slug: 'basic-rifle',
     title: 'NRA Basics of Rifle Shooting',
+    kicker: 'NRA Basics of Rifle Shooting',
+    bigWord: 'Rifle',
     fullTitle: 'NRA Basics of Rifle Shooting',
     short: 'The knowledge, skills, and attitude for owning and using a rifle safely.',
     price: 'Call for pricing',
@@ -379,6 +385,8 @@ const courses = [
   {
     slug: 'private-training',
     title: 'Private Training (1-on-1)',
+    kicker: 'Private training',
+    bigWord: '1-on-1',
     fullTitle: 'Private Training — One on One',
     short: 'Sessions built around exactly what you want to work on.',
     price: 'Call for pricing',
@@ -411,6 +419,8 @@ const courses = [
   {
     slug: 'self-defense',
     title: 'Expert Self Defense',
+    kicker: 'Expert self defense',
+    bigWord: 'Hapkido',
     fullTitle: 'Expert Self Defense — Hapkido',
     short: 'Empty-hand self defense from a 4th Dan Master Instructor.',
     price: 'Call for pricing',
