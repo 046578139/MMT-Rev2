@@ -80,6 +80,19 @@ the hero and the card want different framing from the same photo. The `hero-rang
 photo is a 2:1 banner, which suits a full-bleed hero far better than the 3:2 course
 photos; it runs at 0.9 opacity because it is a darker frame than the others.
 
+### Carried over from the old site
+
+The old site led with three big slab-lettered blocks — **HQL**, **TRAINING**,
+**RENEWAL** — and that was its strongest brand cue. The three featured course cards
+now carry the same idea: a small qualifier line over the photo with one large word
+beneath it. The word *is* the card's heading rather than a decoration repeating it, so
+there is still one heading per card.
+
+A course gets this treatment by having `kicker` and `bigWord` in `src/content.js`; any
+course without them renders the standard card. The word is sized in container query
+units against the card, not the viewport — sized against the viewport, "RENEWAL" came
+within a few pixels of the card edges and overflowed at some widths.
+
 ### Accessibility and SEO
 
 Every page: one `<h1>`, no heading-level skips, alt text on all images, visible focus

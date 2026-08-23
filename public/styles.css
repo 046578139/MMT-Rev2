@@ -309,6 +309,7 @@ address { font-style: normal; }
 /* ------------------------------------------------------------------ card */
 
 .card {
+  container-type: inline-size;
   position: relative; display: flex; flex-direction: column;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
   overflow: hidden; box-shadow: var(--shadow);
@@ -372,6 +373,50 @@ address { font-style: normal; }
   font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
 }
 .card:hover .card-link { background: var(--ink); color: var(--hivis); }
+
+/* ------------------------------------------------- billboard course card */
+
+/* Echoes the three big slab words the old site led with. The word is the
+   heading; the qualifier above it carries the full course name. */
+.card-billboard .card-media { height: 260px; position: relative; }
+.card-billboard .card-media::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(7, 11, 14, .18) 0%,
+    rgba(7, 11, 14, .55) 45%,
+    rgba(7, 11, 14, .93) 100%);
+}
+
+.card-overlay {
+  position: absolute; inset-inline: 0; bottom: 0; z-index: 1;
+  padding: 1.1rem 1.25rem 1rem;
+}
+.card-overlay .badge { margin-bottom: .55rem; }
+.card-overlay h3 { margin: 0; }
+.card-overlay h3 a { color: #fff; text-decoration: none; display: block; }
+.card-overlay h3 a::after { content: ''; position: absolute; inset: 0; }
+
+.card-kicker {
+  display: block;
+  font-family: var(--font-head);
+  font-size: .78rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--hivis);
+  margin-bottom: .1rem;
+}
+/* Sized against the card, not the viewport: the longest word (RENEWAL) sat
+   within a few pixels of the edges at some widths and would have overflowed. */
+.card-big {
+  display: block;
+  font-family: var(--font-head);
+  font-size: clamp(1.9rem, 15cqw, 3.3rem);
+  font-weight: 700; line-height: .95;
+  letter-spacing: .01em; text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .6);
+}
+.card-billboard:hover .card-big { color: var(--hivis); }
+.card-billboard .card-body { padding-top: 1.1rem; }
 
 /* ----------------------------------------------------------------- split */
 

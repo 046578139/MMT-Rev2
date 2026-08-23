@@ -94,6 +94,8 @@ const courses = [
   {
     slug: 'md-hql-class',
     title: 'Maryland HQL Class',
+    kicker: 'Maryland Handgun Qualification License',
+    bigWord: 'HQL',
     fullTitle: 'Maryland Handgun Qualification License (HQL) Course',
     short: 'Required before you can buy a handgun in Maryland.',
     price: '$75',
@@ -140,6 +142,8 @@ const courses = [
   {
     slug: 'md-wear-carry-training',
     title: 'MD Wear & Carry Training',
+    kicker: 'Maryland Wear & Carry',
+    bigWord: 'Training',
     fullTitle: 'Maryland Wear and Carry Permit Course — Original Application',
     short: '16-hour course required for a first-time Maryland carry permit.',
     price: 'Call for pricing',
@@ -189,6 +193,8 @@ const courses = [
   {
     slug: 'md-wear-carry-renewal',
     title: 'MD Wear & Carry Renewal',
+    kicker: 'Maryland Wear & Carry',
+    bigWord: 'Renewal',
     fullTitle: 'Maryland Wear and Carry Permit Course — Renewal',
     short: '8-hour hands-on course to qualify for your permit renewal.',
     price: '$150',

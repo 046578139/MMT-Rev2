@@ -167,6 +167,33 @@ function courseCard(c) {
   // A course with a photo shows it; the rest keep the icon panel. Both headers
   // are the same height so cards stay aligned across a row either way.
   const photo = coursePhoto(c);
+
+  // A course with a big word carries it over the photo, the way the three class
+  // blocks did on the old site. The heading moves into the overlay so the word
+  // is the heading rather than a decoration repeating it.
+  if (c.bigWord && photo) {
+    return `<article class="card card-billboard">
+  <div class="card-media">
+    ${picture(photo)}
+    <div class="card-overlay">
+      ${c.badge ? `<p class="badge">${esc(c.badge)}</p>` : ''}
+      <h3><a href="/courses/${c.slug}/">
+        <span class="card-kicker">${esc(c.kicker || '')}</span>
+        <span class="card-big">${esc(c.bigWord)}</span>
+      </a></h3>
+    </div>
+  </div>
+  <div class="card-body">
+    <p>${esc(c.short)}</p>
+    <ul class="meta plain">
+      <li>${svg('tag')}${esc(c.price)}</li>
+      <li>${svg('clock')}${esc(c.length)}</li>
+    </ul>
+  </div>
+  <a class="card-link" href="/courses/${c.slug}/" tabindex="-1" aria-hidden="true">Details ${svg('arrow')}</a>
+</article>`;
+  }
+
   const head = photo
     ? `<div class="card-media">${picture(photo)}</div>`
     : `<div class="card-icon">${svg(courseIcon[c.slug])}</div>`;
