@@ -89,6 +89,13 @@ meta-refresh stubs cover hosts without redirect support, such as GitHub Pages.
 
 Three things need a human decision — all marked `REVIEW` in `src/content.js`:
 
+0. **The shop page's lead photo.** `counter-service` is a polished retail image that
+   does not show this shop — the interior, fixtures and staff branding are someone
+   else's, and a Vortex cap and polo are clearly visible. It reads as a stock or
+   manufacturer marketing photo. Confirm there is a licence to use it, and be aware a
+   customer may arrive expecting the store in the picture. A photo of the real counter
+   would do the same job and be true.
+
 0. **The shop page's NFA wording and the transfer fee.** Transferring suppressors and
    SBRs requires an SOT in addition to the FFL — confirm the exact licensing wording.
    Transfers are advertised but no fee is stated anywhere on the site, and it is the
@@ -136,7 +143,7 @@ Slots cropped with `object-fit: cover` can set a `position` in the `photos` map 
 the crop. Note this only pans along the axis that is actually being cropped — a portrait
 photo in a landscape box crops vertically, so a horizontal value there does nothing.
 
-Slots: `hero-range`, `range-lesson`, `classroom`, `shop-interior`, `gun-wall`,
+Slots: `hero-range`, `range-lesson`, `classroom`, `counter-service`, `shop-interior`, `gun-wall`,
 `trooper`, `deployment`, `checklist`, `lawshield`. Add a new one with a line in `SLOTS`
 in the script, an entry in `photos`, and a `picture('<slot>')` call in `build.js`.
 

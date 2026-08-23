@@ -40,6 +40,7 @@ SLOTS = {
     "range-lesson":  (1000, 82),   # live-fire instruction, shown as a figure
     "classroom":     (1400, 80),   # classroom session
     "shop-interior": (1400, 80),   # counter and branded sign
+    "counter-service": (1400, 80), # customer being helped at the counter
     "gun-wall":      (1100, 80),   # rack of long guns
     "trooper":       (700,  82),   # instructor portrait
     "deployment":    (900,  82),   # instructor portrait

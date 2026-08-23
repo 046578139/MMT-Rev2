@@ -560,6 +560,14 @@ address { font-style: normal; }
 .shop-shot { margin: 0; }
 .shop-shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 
+/* Full-bleed lead image under a page head. Capped in height so a wide photo
+   does not push the page's actual content below the fold. */
+.lead-shot { margin: 0; position: relative; }
+.lead-shot img {
+  width: 100%; height: clamp(240px, 44vw, 540px); object-fit: cover;
+  border-bottom: 2px solid var(--hivis);
+}
+
 /* ------------------------------------------------------- shop services */
 
 /* Three parallel services, not a sequence — so no numbering, just a hi-vis

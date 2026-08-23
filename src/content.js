@@ -504,6 +504,11 @@ const photos = {
   classroom: {
     alt: 'A full classroom of students during a Mountain Maryland Firearms Training session',
   },
+  'counter-service': {
+    alt: 'A customer being shown a pistol across the shop counter',
+    // Wide-ish frame with the subjects centre-right; hold the faces when cropped.
+    position: '55% 38%',
+  },
   'shop-interior': {
     alt: 'Inside the shop: rifle racks, the Maryland State Police flag, and the Mountain Maryland Firearms Training sign',
     // Pan up to keep the branded counter and the racks behind it in frame.

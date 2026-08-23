@@ -567,6 +567,12 @@ function buildShop() {
   </div>
 </section>
 
+${
+  hasPhoto('counter-service')
+    ? `<figure class="lead-shot">${picture('counter-service', { loading: 'eager', fetchpriority: 'high' })}</figure>`
+    : ''
+}
+
 <section class="wrap section services-section">
   <h2 class="sr-only">Shop services</h2>
   ${serviceStrip()}
