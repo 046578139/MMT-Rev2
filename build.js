@@ -102,6 +102,21 @@ function picture(name, { cls = '', loading = 'lazy', sizes, fetchpriority, alt }
 </picture>`;
 }
 
+/** Headline shop services — leads the shop page, above the stock list. */
+function serviceStrip() {
+  return `<ul class="services plain">
+${retail.services
+  .map(
+    (sv) => `  <li class="service">
+    <div class="service-icon">${svg(sv.icon)}</div>
+    <h2>${esc(sv.name)}</h2>
+    <p>${esc(sv.body)}</p>
+  </li>`
+  )
+  .join('\n')}
+</ul>`;
+}
+
 /** Retail categories as a spec-sheet grid. */
 function retailGrid() {
   return `<div class="grid grid-3 kit">
@@ -284,6 +299,7 @@ function buildHome() {
         <ul class="ticks plain">
           ${retail.categories.slice(0, 4).map((c) => `<li>${svg('check')}<strong>${esc(c.name)}</strong></li>`).join('\n          ')}
         </ul>
+        <p class="service-line">${retail.services.map((sv) => esc(sv.name)).join(' &middot; ')}</p>
         <a class="btn btn-outline" href="/shop/">See what we carry ${svg('arrow')}</a>
       </div>
     </div>
@@ -551,7 +567,12 @@ function buildShop() {
   </div>
 </section>
 
-<section class="wrap section">
+<section class="wrap section services-section">
+  <h2 class="sr-only">Shop services</h2>
+  ${serviceStrip()}
+</section>
+
+<section class="wrap section section-tight">
   <div class="section-head">
     <h2>What's on the counter</h2>
     <p>Stock changes week to week. If you do not see it, ask — most things can be ordered.</p>
@@ -594,10 +615,10 @@ ${ctaBand('Stop in, or call ahead', `The shop is at ${fullAddress()}. Call ${sit
   writePage(
     track('/shop/', '0.9'),
     page({
-      title: 'Gun Shop in Frostburg, MD — Pistols, Rifles, Suppressors',
+      title: 'Gun Shop in Frostburg, MD — Sales, Trades & Transfers',
       description:
-        'Pistols, rifles, shotguns, SBRs, NFA items and suppressors, plus ammunition and ' +
-        'optics, at Mountain Maryland Firearms Training in Frostburg, MD.',
+        'Buy, sell, trade and consign firearms, FFL gun transfers, and on-site sales in ' +
+        'Frostburg, MD. Pistols, rifles, SBRs, NFA items and suppressors.',
       path: '/shop/',
       ogImage: '/assets/img/shop-interior.jpg',
       body,
@@ -617,6 +638,10 @@ ${ctaBand('Stop in, or call ahead', `The shop is at ${fullAddress()}. Call ${sit
             postalCode: site.address.postalCode,
             addressCountry: site.address.country,
           },
+          makesOffer: retail.services.map((sv) => ({
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: sv.name, description: sv.body },
+          })),
           department: {
             '@type': 'Store',
             name: 'Firearms retail',

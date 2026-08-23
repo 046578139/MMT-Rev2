@@ -531,9 +531,10 @@ const photos = {
  *
  * REVIEW before launch: NFA items (suppressors, SBRs) can only be transferred by
  * a dealer holding an SOT in addition to the FFL. The copy below says these are
- * offered and ordered, which is what the owner described; confirm the exact
- * licensing wording, and confirm whether transfers for outside purchases are
- * offered and at what fee, before publishing.
+ * offered and ordered, which is what the owner described — confirm the exact
+ * licensing wording. Transfers for outside purchases are confirmed offered; the
+ * fee is not stated anywhere on the site yet, and buyers will ask, so add it to
+ * the "Gun transfers" service below when it is settled.
  */
 const retail = {
   eyebrow: 'The shop',
@@ -543,6 +544,34 @@ const retail = {
     'provider. Come in and handle what you are considering, ask questions without a ' +
     'sales pitch, and get straight answers from someone who has carried a firearm ' +
     'professionally for thirty years.',
+  /**
+   * Headline services — what the shop does, as distinct from what it stocks.
+   * These lead the shop page because they are what people search for.
+   */
+  services: [
+    {
+      icon: 'tag',
+      name: 'Buy, sell, trade & consign',
+      body:
+        'Bring in what you are no longer shooting. We buy outright, take trades against ' +
+        'something on the shelf, and take firearms on consignment.',
+    },
+    {
+      icon: 'pin',
+      name: 'On-site sales',
+      body:
+        'Handle it before you buy it. Everything is sold here at the counter in Frostburg, ' +
+        'with the paperwork done on site.',
+    },
+    {
+      icon: 'arrow',
+      name: 'Gun transfers',
+      body:
+        'Bought online or out of state? Ship it here and we will handle the FFL transfer ' +
+        'and the background check.',
+    },
+  ],
+
   categories: [
     {
       icon: 'target',

@@ -89,10 +89,11 @@ meta-refresh stubs cover hosts without redirect support, such as GitHub Pages.
 
 Three things need a human decision — all marked `REVIEW` in `src/content.js`:
 
-0. **The shop page's NFA wording.** Transferring suppressors and SBRs requires an SOT
-   in addition to the FFL. The copy says these are ordered and transferred through the
-   shop, which is what was described — confirm the exact licensing wording, and whether
-   transfers for outside purchases are offered and at what fee.
+0. **The shop page's NFA wording and the transfer fee.** Transferring suppressors and
+   SBRs requires an SOT in addition to the FFL — confirm the exact licensing wording.
+   Transfers are advertised but no fee is stated anywhere on the site, and it is the
+   first thing a transfer customer will ask; add it to the "Gun transfers" service in
+   `src/content.js` once settled.
 
 1. **The contact form has no destination.** `site.formEndpoint` is `null`, so the
    contact page shows a call-to-book panel instead of a form that would silently

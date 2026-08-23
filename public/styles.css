@@ -560,6 +560,40 @@ address { font-style: normal; }
 .shop-shot { margin: 0; }
 .shop-shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 
+/* ------------------------------------------------------- shop services */
+
+/* Three parallel services, not a sequence — so no numbering, just a hi-vis
+   edge marking each as a thing the shop does. */
+.services-section { padding-bottom: 0; }
+.section-tight { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
+
+.services {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+}
+.service {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--hivis);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.4rem 1.4rem;
+  min-width: 0;
+}
+.service-icon { color: var(--hivis); margin-bottom: .6rem; }
+.service-icon .icon { width: 1.6rem; height: 1.6rem; }
+.service h2 {
+  font-size: 1.15rem; margin-bottom: .4rem;
+  letter-spacing: .02em;
+}
+.service p { color: var(--muted); font-size: .97rem; margin: 0; }
+
+.service-line {
+  font-family: var(--font-head);
+  font-size: .92rem; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--hivis);
+  margin: 0 0 1.25rem;
+}
+
 /* ---------------------------------------------------------- retail / kit */
 
 .kit { gap: 1rem; }
