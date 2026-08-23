@@ -12,6 +12,7 @@ dates, or a question with no answer, it was corrected — see
 ```bash
 node build.js      # writes dist/
 npm run serve      # builds, then serves dist/ at http://localhost:8080
+npm run zip        # builds, then packs dist/ into mountainmdft-site.zip
 ```
 
 No dependencies and no install step — Node 18+ and the standard library only.
@@ -134,7 +135,9 @@ original in `photos/`, not a bigger slot.
 `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to
 `main` (enable it under Settings → Pages → Source: GitHub Actions).
 
-The output is plain static files, so any host works — Netlify, Cloudflare Pages, or
-uploading `dist/` to existing hosting. Point the domain at it and keep
+The output is plain static files, so any host works. For Cloudflare Pages, run
+`npm run zip` and drag `mountainmdft-site.zip` into Workers & Pages → Create → Pages →
+Upload assets; the files sit at the zip root and `_redirects` gives real 301s from the
+old Wix URLs. Netlify takes the same `dist/` folder, as does any existing hosting. Point the domain at it and keep
 `site.origin` in `src/content.js` matching the live domain, since canonical URLs and
 the sitemap are built from it.
