@@ -89,14 +89,13 @@ meta-refresh stubs cover hosts without redirect support, such as GitHub Pages.
 
 Three things need a human decision — all marked `REVIEW` in `src/content.js`:
 
-0. **Three supplied photos carry other businesses' branding.** `counter-service` (shop
-   page lead) shows a Vortex cap and polo; `rso-coaching` (RSO course) shows an
-   NRA-uniformed officer on an indoor range, where this range is outdoors; and
-   `wear-carry-class` shows "101 Training" on the cap, polo and bottle. All three read
-   as stock or manufacturer marketing images of other premises. Confirm there is a
-   licence for each, and note a customer may arrive expecting what the picture shows.
-   `hql-class` does not have this problem — it carries this business's own branding.
-   The real classroom and range photos in `photos/` are truer and would do the same job.
+0. **Two supplied photos carry other businesses' branding.** `counter-service` (shop
+   page lead) shows a Vortex cap and polo, and `rso-coaching` (RSO course) shows an
+   NRA-uniformed officer on an indoor range, where this range is outdoors. Both read as
+   stock or manufacturer marketing images of other premises. Confirm there is a licence
+   for each, and note a customer may arrive expecting what the picture shows.
+   `hql-class` and `wear-carry-class` are fine — both carry this business's own
+   branding. Replacing the remaining two the same way would settle this entirely.
 
 0. **The shop page's NFA wording and the transfer fee.** Transferring suppressors and
    SBRs requires an SOT in addition to the FFL — confirm the exact licensing wording.

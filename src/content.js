@@ -521,8 +521,10 @@ const photos = {
     position: '50% 34%',
   },
   'wear-carry-class': {
-    alt: 'An instructor demonstrating a holster and pistol to a Wear and Carry class',
-    position: '50% 38%',
+    alt: 'An instructor briefing a Wear and Carry class on the range',
+    // The photo carries a logo overlay top-left; sit the card crop below it so
+    // it is not sliced, and keep the instructor and students in frame.
+    position: '50% 52%',
   },
   'rso-coaching': {
     alt: 'An NRA Range Safety Officer coaching a shooter on the firing line',
