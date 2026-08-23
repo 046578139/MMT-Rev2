@@ -36,7 +36,7 @@ OUT = os.path.join("public", "assets", "img")
 # is small on screen so it stays sharp on retina displays. The hero sits at 34%
 # opacity behind a dark scrim, so it takes heavy compression without showing it.
 SLOTS = {
-    "hero-range":    (1600, 60),   # home hero background
+    "hero-range":    (1800, 68),   # home hero background — wide 2:1 banner
     "range-lesson":  (1000, 82),   # live-fire instruction, shown as a figure
     "classroom":     (1400, 80),   # classroom session
     "shop-interior": (1400, 80),   # counter and branded sign

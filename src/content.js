@@ -37,8 +37,8 @@ const site = {
    * different focal point from the same photo's card crop, which is set to sit
    * clear of the logo overlay, so it is specified separately.
    */
-  heroPhoto: 'wear-carry-class',
-  heroPosition: '50% 40%',
+  heroPhoto: 'hero-range',
+  heroPosition: '50% 50%',
 
   timezone: 'America/New_York',
   hours: [
@@ -525,7 +525,7 @@ const photos = {
     position: '50% 26%',
   },
   'hero-range': {
-    alt: 'A shooter practicing on the range under instruction',
+    alt: 'An instructor demonstrating on the firing line while a class watches',
   },
   classroom: {
     alt: 'A full classroom of students during a Mountain Maryland Firearms Training session',

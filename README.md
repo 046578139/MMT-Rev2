@@ -76,7 +76,9 @@ brightest pixel behind it, not the average.
 
 The hero background is `site.heroPhoto` in `src/content.js`, with `site.heroPosition`
 for its crop focus. The focus is kept separate from the slot's own `position` because
-the hero and the card want different framing from the same photo.
+the hero and the card want different framing from the same photo. The `hero-range`
+photo is a 2:1 banner, which suits a full-bleed hero far better than the 3:2 course
+photos; it runs at 0.9 opacity because it is a darker frame than the others.
 
 ### Accessibility and SEO
 
