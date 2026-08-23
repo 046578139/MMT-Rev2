@@ -43,6 +43,7 @@ SLOTS = {
     "counter-service": (1400, 80), # customer being helped at the counter
     "rso-coaching":  (1200, 82),   # RSO supervising the firing line
     "wear-carry-class": (1400, 82), # Wear & Carry classroom demonstration
+    "hql-class":     (1400, 82),   # HQL classroom session
     "gun-wall":      (1100, 80),   # rack of long guns
     "trooper":       (700,  82),   # instructor portrait
     "deployment":    (900,  82),   # instructor portrait

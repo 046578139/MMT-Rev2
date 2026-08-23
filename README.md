@@ -89,13 +89,14 @@ meta-refresh stubs cover hosts without redirect support, such as GitHub Pages.
 
 Three things need a human decision — all marked `REVIEW` in `src/content.js`:
 
-0. **Two supplied photos are not of this business.** `counter-service` (shop page lead)
-   and `rso-coaching` (RSO course) are polished images showing other premises, staff and
-   branding — a Vortex cap and polo in one, NRA-branded RSO uniform and an indoor range
-   in the other, where this range is outdoors. Both read as stock or manufacturer
-   marketing photos. Confirm there is a licence for each, and note that a customer may
-   arrive expecting what the picture shows. The real classroom and range photos already
-   in `photos/` are truer and would do the same job.
+0. **Three supplied photos carry other businesses' branding.** `counter-service` (shop
+   page lead) shows a Vortex cap and polo; `rso-coaching` (RSO course) shows an
+   NRA-uniformed officer on an indoor range, where this range is outdoors; and
+   `wear-carry-class` shows "101 Training" on the cap, polo and bottle. All three read
+   as stock or manufacturer marketing images of other premises. Confirm there is a
+   licence for each, and note a customer may arrive expecting what the picture shows.
+   `hql-class` does not have this problem — it carries this business's own branding.
+   The real classroom and range photos in `photos/` are truer and would do the same job.
 
 0. **The shop page's NFA wording and the transfer fee.** Transferring suppressors and
    SBRs requires an SOT in addition to the FFL — confirm the exact licensing wording.
@@ -147,8 +148,8 @@ Slots cropped with `object-fit: cover` can set a `position` in the `photos` map 
 the crop. Note this only pans along the axis that is actually being cropped — a portrait
 photo in a landscape box crops vertically, so a horizontal value there does nothing.
 
-Slots: `hero-range`, `range-lesson`, `classroom`, `counter-service`, `rso-coaching`,
-`shop-interior`, `gun-wall`,
+Slots: `hero-range`, `range-lesson`, `classroom`, `hql-class`, `wear-carry-class`,
+`counter-service`, `rso-coaching`, `shop-interior`, `gun-wall`,
 `trooper`, `deployment`, `checklist`, `lawshield`. Add a new one with a line in `SLOTS`
 in the script, an entry in `photos`, and a `picture('<slot>')` call in `build.js`.
 

@@ -125,6 +125,8 @@ const courses = [
       'Does <strong>not</strong> include the required digital LiveScan fingerprinting, ' +
         'which is normally available onsite.',
     ],
+    photo: 'hql-class',
+    photoCaption: 'Classroom instruction covering Maryland handgun law and the application process.',
   },
 
   {
@@ -512,8 +514,15 @@ const photos = {
   classroom: {
     alt: 'A full classroom of students during a Mountain Maryland Firearms Training session',
   },
+  'hql-class': {
+    alt: 'An instructor teaching Maryland handgun law to a Maryland HQL class',
+    // In a short card band this crops vertically; bias up to hold the
+    // instructor and the branded screen rather than the students' backs.
+    position: '50% 34%',
+  },
   'wear-carry-class': {
     alt: 'An instructor demonstrating a holster and pistol to a Wear and Carry class',
+    position: '50% 38%',
   },
   'rso-coaching': {
     alt: 'An NRA Range Safety Officer coaching a shooter on the firing line',
