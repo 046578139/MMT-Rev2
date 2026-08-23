@@ -6,6 +6,6 @@
   "scripts": {
     "build": "node build.js",
     "serve": "node build.js && cd dist && python3 -m http.server 8080",
-    "zip": "node build.js && rm -f mountainmdft-site.zip && cd dist && zip -rq ../mountainmdft-site.zip . -x '.*'"
+    "zip": "node build.js && rm -f mountainmdft-site.zip && cd dist && zip -rqX ../mountainmdft-site.zip . -x '.*'"
   }
 }

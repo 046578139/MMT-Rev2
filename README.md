@@ -190,6 +190,22 @@ Photos never render larger than their own resolution: figures size to the file, 
 optimizer only ever downscales. If a photo looks soft, the fix is a higher-resolution
 original in `photos/`, not a bigger slot.
 
+## What ships in the zip
+
+`npm run zip` packs only `dist/` — the rendered site. It carries no build tooling, no
+git history and no authoring metadata:
+
+- No EXIF, XMP, IPTC or text chunks in any image. The optimizer re-encodes every photo
+  from its original, which drops camera data, GPS coordinates and any editing history
+  the source carried. JPEGs keep only the standard JFIF header; the one ICC profile is
+  the generic sRGB one.
+- No `generator` or `author` meta tags, no HTML comments, no local filesystem paths.
+- `zip -rqX` strips the Unix UID/GID extra field, so the archive records no account
+  identifiers from the machine that built it.
+
+File modification times remain, which is normal for an archive and reveals only when
+the build ran.
+
 ## Deploying
 
 `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to
